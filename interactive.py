@@ -25,7 +25,7 @@ def powerlaw(xdata, alpha, constant):
     return constant * (xdata/1500)**alpha    
 
 
-def get_index(xdata=None, ydata=None, yerrdata=None, Plot=True, Filename='/Users/jacobaskew/Desktop/plot'):
+def get_index(xdata=None, ydata=None, yerrdata=None, Plot=True, Filename=None):
         
     popt, pcov = curve_fit(powerlaw, xdata, ydata)#, sigma=yerrdata)
     
@@ -51,5 +51,5 @@ def get_index(xdata=None, ydata=None, yerrdata=None, Plot=True, Filename='/Users
 
 # Call the functions and print/save results
 
-index, index_err = get_index(xdata=data[:, 0], ydata=data[:, 1], yerrdata=data[:, 2], Plot=True, Filename='/drive/notebooks/')
+index, index_err = get_index(xdata=data[:, 0], ydata=data[:, 1], yerrdata=data[:, 2], Plot=True, Filename=None)
 print("The relationship between observational frequency and scintilation bandwidth, alpha, was found to be: alpha=", index, "+/-", index_err)
