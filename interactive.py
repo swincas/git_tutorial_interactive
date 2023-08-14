@@ -22,10 +22,24 @@ data = np.asarray(data)
 
 
 def powerlaw(xdata, alpha, constant):
+    '''
+    xdata: data
+    alpha: exponent
+    constant: normalisation 
+
+    returns power law with above variables
+    '''
     return constant * (xdata/1500)**alpha    
 
 
 def get_index(xdata=None, ydata=None, yerrdata=None, Plot=True, Filename=None):
+    '''
+    xdata: data along axis 0 (xaxis) of eventual plot
+    ydata: data along axis 1 (yaxis) of eventual plot
+    yerrdata: error on ydata
+    Plot: boolean, make/don't make plot
+    Filename: name under which to save the file, excluding type (e.g. .png), including path from code directory 
+    '''
         
     popt, pcov = curve_fit(powerlaw, xdata, ydata)#, sigma=yerrdata)
     
