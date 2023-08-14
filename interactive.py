@@ -48,7 +48,20 @@ def get_index(xdata=None, ydata=None, yerrdata=None, Plot=True, Filename=None):
     index_err = perr[0]
 
     if Plot:
-        plt.scatter(xdata, ydata)
+        plot_results(xdata, ydata, yerrdata)
+    
+    return index, index_err
+
+
+def plot_results(xdata, ydata, yerrdata):
+    '''
+    xdata: data along axis 0 (xaxis) of eventual plot
+    ydata: data along axis 1 (yaxis) of eventual plot
+    yerrdata: error on ydata
+    
+    plots the generated data x against y in a power law
+    '''
+    plt.scatter(xdata, ydata)
         plt.errorbar(xdata, ydata, yerr=yerrdata, fmt=' ', alpha=0.3)
         plt.plot(xdata, powerlaw(xdata, *popt), 'r-',
                  label=r'fit: $\alpha$=%5.3f, C=%5.3f' % tuple(popt))
@@ -59,9 +72,6 @@ def get_index(xdata=None, ydata=None, yerrdata=None, Plot=True, Filename=None):
             plt.savefig(Filename+'.png')
         plt.show()
         plt.close()
-    
-    return index, index_err
-
 
 # Call the functions and print/save results
 
